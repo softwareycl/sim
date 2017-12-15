@@ -1,9 +1,9 @@
 <template>
   <div class="wrap">
-    <div class="title"><span class="topic">学生信息管理系统</span><span class="blank"></span><span class="welcome">欢迎你！</span></div>
+    <div class="title"><span class="topic">&nbsp  &nbsp学生信息管理系统&nbsp</span><span class="welcome">欢迎你！</span></div>
     <div class="content">
       <div style="position:absolute;z-index=2;">
-        <img src="../assets/cover.jpeg" width="100%" height="100%">
+        <img src="../assets/cover.jpeg" width="99.6%" height="100%">
       </div>
       <div class="icons" style="position:absolute;z-index=3;">
         <img class="student" :src="student_img" @click="tologin('student')" style="position:relative;top:100px;left:350px;">
@@ -64,16 +64,17 @@ export default {
   height: 50px;
   font-family: mb-icon;
   color: #aad5e3;
+  text-align: center;
+  text-align: left;
 }
 
 .topic {
   font-size: 26px;
-}
-.blank {
-  width: 100px;
+  line-height: 50px;
 }
 .welcome {
   font-size: 20px;
+  line-height: 60px;
 }
 
 .icons img {

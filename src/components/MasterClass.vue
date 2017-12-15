@@ -1,28 +1,27 @@
 <template>
   <div class="wrap">
-    <el-container>
-      <el-header height="100px">
-        班级学生列表
-      </el-header>
-      <el-main>
-        <el-table :data="tableData" stripe border style="width: 800px;" height="780">
-          <el-table-column
-            prop="date"
-            label="日期"
-            width="180">
-          </el-table-column>
-          <el-table-column
-            prop="name"
-            label="姓名"
-            width="180">
-          </el-table-column>
-          <el-table-column
-            prop="address"
-            label="地址">
-          </el-table-column>
-        </el-table>
-      </el-main>
-    </el-container>
+    <div class="title" style="width:100%;height:100px;">班级学生列表</div>
+    <div class="content" style="position:absolute;width:99.2%;height:100%;">
+      <el-table :data="tableData" stripe border style="width: 800px;position:relative;top:100px;left:150px;" height="700">
+        <el-table-column
+          prop="date"
+          label="日期"
+          width="180">
+        </el-table-column>
+        <el-table-column
+          prop="name"
+          label="姓名"
+          width="180">
+        </el-table-column>
+        <el-table-column
+          prop="address"
+          label="地址">
+        </el-table-column>
+      </el-table>
+      <el-button type="primary" style="position:relative;top:-680px;left:85%" @click="toProfile()">返回首页</el-button>
+      <div class="address" style="position:relative;top:-450px;left:65%;" @click="toAddress()">通讯录</div>
+      <div class="statistics" style="position:relative;top:-400px;left:75%;">查看统计报表</div>
+    </div>
   </div>
 </template>
 
@@ -48,25 +47,45 @@ export default {
         address: '上海市普陀区金沙江路 1516 弄'
       }]
     }
+  },
+  methods: {
+    toProfile () {
+      this.$router.push('/master/profile')
+    },
+    toAddress () {
+      this.$router.push('/master/address')
+    }
   }
 }
 </script>
 
 <style scoped>
-.el-table {
-  left: 200px;
-  top: 100px;
-}
-.el-header {
+.title {
   background-color: #427cd4;
-  color: #333;
   text-align: center;
-  line-height: 60px;
+  line-height: 100px;
 }
-.el-main {
+.content {
   background-color: #E9EEF3;
-  color: #333;
+}
+.statistics {
+  width: 170px;      
+  height: 140px;      
+  background-color:#2e7d74;      
+  border-radius: 60px;      
+  font-size: 25px;
+  line-height: 140px;
+  color: white;
   text-align: center;
-  line-height: 160px;
+}
+.address {
+  width: 160px;      
+  height: 140px;      
+  background-color:#51c2b4;      
+  border-radius: 60px;      
+  font-size: 30px;
+  line-height: 140px;
+  color: white;
+  text-align: center;
 }
 </style>

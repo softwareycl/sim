@@ -1,8 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import HelloWorld from '@/components/HelloWorld'
 import Cover from '@/components/Cover'
-import Login from '@/components/Login'
 
 Vue.use(Router)
 
@@ -12,15 +10,6 @@ export default new Router({
       path: '/',
       name: 'Cover',
       component: Cover
-    },
-    {
-      path: '/hello',
-      name: 'Hello',
-      component: HelloWorld
-    },
-    {
-      path: '/login',
-      component: Login
     },
     {
       path: '/student/login',
@@ -33,6 +22,14 @@ export default new Router({
     {
       path: '/teacher/login',
       component: resolve => require(['../components/TeacherLogin.vue'], resolve)
+    },
+    {
+      path: '/teacher/profile',
+      component: resolve => require(['../components/TeacherProfile.vue'], resolve)
+    },
+    {
+      path: '/teacher/class',
+      component: resolve => require(['../components/TeacherClass.vue'], resolve)
     },
     {
       path: '/master/login',
@@ -55,8 +52,24 @@ export default new Router({
       component: resolve => require(['../components/MasterArchive.vue'], resolve)
     },
     {
+      path: '/master/address',
+      component: resolve => require(['../components/MasterAddress.vue'], resolve)
+    },
+    {
       path: '/admin/login',
       component: resolve => require(['../components/AdminLogin.vue'], resolve)
+    },
+    {
+      path: '/admin/profile',
+      component: resolve => require(['../components/AdminProfile.vue'], resolve)
+    },
+    {
+      path: '/admin/request',
+      component: resolve => require(['../components/ArchiveRequests.vue'], resolve)
+    },
+    {
+      path: '/admin/refuse',
+      component: resolve => require(['../components/AdminRefuse.vue'], resolve)
     }
   ]
 })

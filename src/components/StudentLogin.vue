@@ -18,7 +18,7 @@
 							</el-popover>
             </el-form-item>
           </el-form>
-          <el-button>登录</el-button>
+          <el-button @click="login()">登录</el-button>
         </div>
       </el-main>
     </el-container>
@@ -39,7 +39,7 @@ export default {
   },
   methods: {
     login () {
-
+      this.$router.push('/student/profile')
     }
   }
 }

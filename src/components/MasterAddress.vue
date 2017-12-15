@@ -1,8 +1,8 @@
 <template>
   <div class="wrap">
-    <div class="title" style="width:100%;height:100px;">学生干部名单</div>
+    <div class="title" style="width:100%;height:100px;">通讯录</div>
     <div class="content" style="position:absolute;width:99.2%;height:100%;">
-      <el-table :data="tableData" stripe border style="width: 800px;position:relative;top:100px;left:150px;" height="700">
+      <el-table :data="tableData" stripe border style="width: 1500px;position:relative;top:100px;left:150px;" height="700">
         <el-table-column
           prop="date"
           label="日期"
@@ -18,7 +18,7 @@
           label="地址">
         </el-table-column>
       </el-table>
-      <el-button style="position:relative;top:-680px;left:85%;background-color:#269e90;color:white;" @click="toPrev()">返回上一页</el-button>
+      <el-button style="position:relative;top:-680px;left:85%;background-color:#1f665d;color:white;" @click="toPrev()">返回上一页</el-button>
     </div>
   </div>
 </template>
@@ -48,7 +48,7 @@ export default {
   },
   methods: {
     toPrev () {
-      this.$router.push('/master/profile')
+      this.$router.push('/master/class')
     }
   }
 }
@@ -56,7 +56,7 @@ export default {
 
 <style scoped>
 .title {
-  background-color: #32ab9c;
+  background-color: #44bdae;
   text-align: center;
   line-height: 100px;
 }
