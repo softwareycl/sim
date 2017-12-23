@@ -18,9 +18,9 @@
           label="地址">
         </el-table-column>
       </el-table>
-      <el-button type="primary" style="position:relative;top:-680px;left:85%" @click="toProfile()">返回首页</el-button>
+      <el-button  style="position:relative;top:-680px;left:85%;background-color:#70c9e6;color:black;" @click="toProfile()">返回首页</el-button>
       <div class="address" style="position:relative;top:-450px;left:65%;" @click="toAddress()">通讯录</div>
-      <div class="statistics" style="position:relative;top:-400px;left:75%;">查看统计报表</div>
+     
     </div>
   </div>
 </template>
@@ -61,27 +61,19 @@ export default {
 
 <style scoped>
 .title {
-  background-color: #427cd4;
+  background-color: #70c9e6;
   text-align: center;
   line-height: 100px;
+  font-size: 45px;
 }
 .content {
-  background-color: #E9EEF3;
+  background-color: #c3e9f5;
 }
-.statistics {
-  width: 170px;      
-  height: 140px;      
-  background-color:#2e7d74;      
-  border-radius: 60px;      
-  font-size: 25px;
-  line-height: 140px;
-  color: white;
-  text-align: center;
-}
+
 .address {
   width: 160px;      
   height: 140px;      
-  background-color:#51c2b4;      
+  background-color:#90c8eb;      
   border-radius: 60px;      
   font-size: 30px;
   line-height: 140px;

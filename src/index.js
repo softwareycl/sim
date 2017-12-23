@@ -20,14 +20,6 @@ export default new Router({
       component: resolve => require(['../components/StudentProfile.vue'], resolve)
     },
     {
-      path: '/student/edit',
-      component: resolve => require(['../components/StudentEdit.vue'], resolve)
-    },
-    {
-      path: '/student/push',
-      component: resolve => require(['../components/StudentPush.vue'], resolve)
-    },
-    {
       path: '/teacher/login',
       component: resolve => require(['../components/TeacherLogin.vue'], resolve)
     },
@@ -62,10 +54,6 @@ export default new Router({
     {
       path: '/master/address',
       component: resolve => require(['../components/MasterAddress.vue'], resolve)
-    },
-    {
-      path: '/master/push',
-      component: resolve => require(['../components/MasterPush.vue'], resolve)
     },
     {
       path: '/admin/login',

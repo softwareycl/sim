@@ -18,7 +18,7 @@
           label="地址">
         </el-table-column>
       </el-table>
-      <el-button style="position:relative;top:-680px;left:85%;background-color:#1f665d;color:white;" @click="toPrev()">返回上一页</el-button>
+      <el-button style="position:relative;top:-680px;left:85%;background-color:#90c8eb;color:black;" @click="toPrev()">返回上一页</el-button>
     </div>
   </div>
 </template>
@@ -56,11 +56,12 @@ export default {
 
 <style scoped>
 .title {
-  background-color: #44bdae;
+  background-color: #90c8eb;
   text-align: center;
   line-height: 100px;
+   font-size: 45px;
 }
 .content {
-  background-color: #E9EEF3;
+  background-color: #bdd7e8;
 }
 </style>

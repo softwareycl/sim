@@ -1,7 +1,9 @@
 <template>
   <div class="wrap">
     <el-container>
-       <el-header height="50px"><b>{{ Name }}老师，欢迎你 ！</b> <el-button class="getout" @click="getOut()">注销</el-button></el-header>
+      <el-header height="100px">
+        方琼老师欢迎您！
+      </el-header>
       <el-main>
         <div style="position:absolute;z-index=1;height:500px;">
           <div class="myclass" style="position:relative;top:100px;left:380px;" @click="myClass()">我的班级</div>
@@ -17,9 +19,7 @@
 <script>
 export default {
   data () {
-    return {
-      Name: '方琼'
-    }
+    return {}
   },
   methods: {
     myClass () {
@@ -33,9 +33,6 @@ export default {
     showArchives () {
       console.log('1')
       this.$router.push('/master/archive')
-    },
-    getOut () {
-      this.$router.push('/')
     }
   }
 }
@@ -86,10 +83,5 @@ img {
   color: #333;
   text-align: center;
   line-height: 160px;
-}
-.getout {
-  background-color: #499fe9;
-  margin-left:1655px;
-  height: 40px;
 }
 </style>
