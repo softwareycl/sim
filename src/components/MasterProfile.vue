@@ -11,7 +11,7 @@
       <el-main>
         <div style="position:absolute;z-index=1;height:500px;">
           <div class="myclass" style="position:relative;top:100px;left:380px;" @click="myClass()">我的班级</div>
-          <img src="../assets/linux2.jpeg" style="position:relative;top:70px;left:570px;">
+          <img src="../assets/penguin.png" style="position:relative;top:70px;left:570px;">
           <div class="organization" style="position:relative;top:-750px;left:950px;" @click="showOrganization()">班级组织结构</div>
           <div class="archive" style="position:relative;top:-580px;left:1200px;" @click="showArchives()">申请修改学生档案</div>
         </div>

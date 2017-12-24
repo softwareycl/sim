@@ -64,6 +64,10 @@ export default new Router({
       component: resolve => require(['../components/MasterStudent.vue'], resolve)
     },
     {
+      path: '/master/modify',
+      component: resolve => require(['../components/MasterModify.vue'], resolve)
+    },
+    {
       path: '/master/organization',
       component: resolve => require(['../components/MasterOrganization.vue'], resolve)
     },
