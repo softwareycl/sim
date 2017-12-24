@@ -14,9 +14,7 @@
               <el-input type="password" v-model="form.pwd" style="margin-left:-72px;width:200px;"></el-input>
               <el-button class="pwdbtn" @click="pwdForget()">忘记密码？</el-button>
             </el-form-item>
-
-           
-
+            
             <el-form-item class="vali-code" >
               <el-input class="validateCode" v-model="form.validatecode" placeholder="请输入验证码" size="medium"></el-input>
               <img :src="codeURL" alt="logo" title="点击换一张" @click="changeCode()">

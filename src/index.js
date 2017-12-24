@@ -56,6 +56,10 @@ export default new Router({
       component: resolve => require(['../components/MasterAddress.vue'], resolve)
     },
     {
+      path: '/master/requests',
+      component: resolve => require(['../components/MasterRequests.vue'], resolve)
+    },
+    {
       path: '/admin/login',
       component: resolve => require(['../components/AdminLogin.vue'], resolve)
     },

@@ -48,8 +48,20 @@ export default new Router({
       component: resolve => require(['../components/MasterProfile.vue'], resolve)
     },
     {
+      path: '/master/requests',
+      component: resolve => require(['../components/MasterRequests.vue'], resolve)
+    },
+    {
+      path: '/master/refuse',
+      component: resolve => require(['../components/MasterRefuse.vue'], resolve)
+    },
+    {
       path: '/master/class',
       component: resolve => require(['../components/MasterClass.vue'], resolve)
+    },
+    {
+      path: '/master/student',
+      component: resolve => require(['../components/MasterStudent.vue'], resolve)
     },
     {
       path: '/master/organization',
