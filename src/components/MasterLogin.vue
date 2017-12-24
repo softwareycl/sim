@@ -1,23 +1,25 @@
 <template>
   <div class="wrap">
     <el-container>
-      <el-header height="100px">班主任登录</el-header>
+      <el-header height="50px"><b>班主任登陆</b> <el-button class="getout" @click="getOut()">注销</el-button></el-header>
       <el-main>
         <div class="login">
-          <el-form :label-position="labelPosition" label-width="60px" v-model="form">
+         <el-form :label-position="labelPosition" label-width="80px" v-model="form">
+
             <el-form-item class="username" label="用户名">
-              <el-input v-model="form.username" style="margin-left:30px;width:400px;"></el-input>
+              <el-input v-model="form.username" style="margin-left:5px;width:400px;height:51px;"></el-input>
             </el-form-item>
+
             <el-form-item class="pwd" label="密码">
-              <el-input type="password" v-model="form.pwd" style="margin-left:30px;width:400px;"></el-input>
-            </el-form-item>
-            <el-form-item class="pwdForget">
+              <el-input type="password" v-model="form.pwd" style="margin-left:-72px;width:200px;"></el-input>
               <el-button class="pwdbtn" @click="pwdForget()">忘记密码？</el-button>
             </el-form-item>
-            <el-form-item class="vali-code">
+            
+            <el-form-item class="vali-code" >
               <el-input class="validateCode" v-model="form.validatecode" placeholder="请输入验证码" size="medium"></el-input>
-              <img src='' alt="logo" title="点击换一张" @click="changeCode()">
+              <img :src="codeURL" alt="logo" title="点击换一张" @click="changeCode()">
             </el-form-item>
+
           </el-form>
           <el-button class="loginbtn" @click="login()">登录</el-button>
         </div>
@@ -30,24 +32,76 @@
 export default {
   data () {
     return {
-      labelPosition: 'left',
+      labelPosition: 'right',
       form: {
         username: '',
         pwd: '',
         validatecode: ''
-      }
+      },
+      hostURL: 'http://localhost:8080/student',
+      codeURL: 'http://localhost:8080/verifyCode?num=' + Math.random()
     }
   },
   methods: {
     login () {
-      console.log('login')
-      this.$router.push('/master/profile')
+      this.$axios({
+        url: 'http://localhost:8080/validateCodeMet',
+        method: 'get',
+        params: {
+          loginCode: this.form.validatecode
+        }
+      }).then((response) => {
+        if (response.data.valid === true) {
+          this.toLogin()
+        } else {
+          this.$message({
+            type: 'info',
+            message: '验证码不符'
+          })
+        }
+      }).catch((error) => {
+        this.$message({
+          type: 'info',
+          message: '连接失败' + error
+        })
+      })
+    },
+    toLogin () {
+      this.$axios.post(this.hostURL + '/login', {
+        userName: this.form.username,
+        password: this.form.pwd
+      }).then((response) => {
+        var state = response.data.valid
+        if (state === 'success') {
+          this.$router.push('/master/profile')
+        } else if (state === 'wrongPwd') {
+          this.$message({
+            type: 'info',
+            message: '密码错误，请重试！'
+          })
+        } else {
+          this.$message({
+            type: 'info',
+            message: '该账户不存在，你是谁？'
+          })
+        }
+        console.log(response)
+      }).catch((error) => {
+        this.$message({
+          type: 'info',
+          message: '连接失败/' + error
+        })
+      })
     },
     pwdForget () {
       console.log('yes')
     },
     changeCode () {
+      this.codeURL = 'http://localhost:8080/verifyCode?num=' + Math.random()
       console.log('no')
+    },
+    getOut () {
+      this.$router.push('/')
     }
   }
 }
@@ -58,10 +112,10 @@ export default {
   background-color: #70c9e6;
   color: #333;
   text-align: center;
-  line-height: 100px;
+  line-height: 50px;
 }
 .el-main {
-  background-color: #E9EEF3;
+  background-color: rgb(195, 219, 244);
   color: #333;
   text-align: center;
   line-height: 160px;
@@ -76,7 +130,7 @@ export default {
   padding: 30px 20px;
   width: 500px;
   height: 400px;
-  background-color: #60b3f0;
+   background-color: #60b3f0;
   margin-left: 1000px;
   margin-top: 200px;
   margin-bottom: 170px;
@@ -88,8 +142,10 @@ export default {
   font-size: 18px;
 }
 .pwdbtn {
-  margin-top: 5px;
-  height: 30px;
+  background-color: #5fc6e8;
+  margin-top: 2px;
+  height: 40px;
+  
 }
 .pwdForget {
   text-align: right;
@@ -98,11 +154,18 @@ export default {
   margin-bottom: 0px;
 }
 .validateCode {
-  width: 300px;
-  margin-right: 20px;
+  width: 200px;
+  margin-right: 154px;
 }
 .vali-code {
+  margin-top: 20px;
   padding-left: 0px;
   margin-left: 0px;
+  
+}
+.getout {
+  background-color: #46afe8;
+  margin-left:1655px;
+  height: 40px;
 }
 </style>

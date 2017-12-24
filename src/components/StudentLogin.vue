@@ -1,24 +1,27 @@
 <template>
   <div class="wrap">
     <el-container>
-      <el-header height="100px">学生登录</el-header>
+      <el-header height="50px"><b>学生登录</b> <el-button class="getout" @click="getOut()">注销</el-button></el-header>
       <el-main>
         <div class="login">
-          <el-form :label-position="labelPosition" label-width="60px" v-model="form">
-            <el-form-item label="用户名">
-              <el-input v-model="form.username"></el-input>
+         <el-form :label-position="labelPosition" label-width="80px" v-model="form">
+
+            <el-form-item class="username" label="用户名">
+              <el-input v-model="form.username" style="margin-left:5px;width:400px;height:51px;"></el-input>
             </el-form-item>
-            <el-form-item label="密码">
-              <el-input type="password" v-model="form.pwd"></el-input>
+
+            <el-form-item class="pwd" label="密码">
+              <el-input type="password" v-model="form.pwd" style="margin-left:-72px;width:200px;"></el-input>
+              <el-button class="pwdbtn" @click="pwdForget()">忘记密码？</el-button>
             </el-form-item>
-            <el-form-item>
-              <el-input v-model="form.validatecode" placeholder="请输入验证码" size="medium"></el-input>
-              <el-popover ref="a" placement="right-end" trigger="hover">
-								<img alt="验证码图片" width="200px">
-							</el-popover>
+
+            <el-form-item class="vali-code" >
+              <el-input class="validateCode" v-model="form.validatecode" placeholder="请输入验证码" size="medium"></el-input>
+              <img :src="codeURL" alt="logo" title="点击换一张" @click="changeCode()">
             </el-form-item>
+
           </el-form>
-          <el-button @click="login()">登录</el-button>
+          <el-button class="loginbtn" @click="login()">登录</el-button>
         </div>
       </el-main>
     </el-container>
@@ -29,17 +32,76 @@
 export default {
   data () {
     return {
-      labelPosition: 'left',
+      labelPosition: 'right',
       form: {
         username: '',
         pwd: '',
         validatecode: ''
-      }
+      },
+      hostURL: 'http://localhost:8080/student',
+      codeURL: 'http://localhost:8080/verifyCode?num=' + Math.random()
     }
   },
   methods: {
     login () {
-      this.$router.push('/student/profile')
+      this.$axios({
+        url: 'http://localhost:8080/validateCodeMet',
+        method: 'get',
+        params: {
+          loginCode: this.form.validatecode
+        }
+      }).then((response) => {
+        if (response.data.valid === true) {
+          this.toLogin()
+        } else {
+          this.$message({
+            type: 'info',
+            message: '验证码不符'
+          })
+        }
+      }).catch((error) => {
+        this.$message({
+          type: 'info',
+          message: '连接失败' + error
+        })
+      })
+    },
+    toLogin () {
+      this.$axios.post(this.hostURL + '/login', {
+        userName: this.form.username,
+        password: this.form.pwd
+      }).then((response) => {
+        var state = response.data.valid
+        if (state === 'success') {
+          this.$router.push('/student/profile')
+        } else if (state === 'wrongPwd') {
+          this.$message({
+            type: 'info',
+            message: '密码错误，请重试！'
+          })
+        } else {
+          this.$message({
+            type: 'info',
+            message: '该账户不存在，你是谁？'
+          })
+        }
+        console.log(response)
+      }).catch((error) => {
+        this.$message({
+          type: 'info',
+          message: '连接失败/' + error
+        })
+      })
+    },
+    pwdForget () {
+      console.log('yes')
+    },
+    changeCode () {
+      this.codeURL = 'http://localhost:8080/verifyCode?num=' + Math.random()
+      console.log('no')
+    },
+    getOut () {
+      this.$router.push('/')
     }
   }
 }
@@ -49,25 +111,61 @@ export default {
 .el-header {
   background-color: #65a8a0;
   color: #333;
-  text-align: center;
-  line-height: 60px;
+  text-align:center;
+  line-height: 50px;
 }
 .el-main {
-  background-color: #E9EEF3;
+  background-color: #dbecea;
   color: #333;
   text-align: center;
   line-height: 160px;
 }
+.username {
+  margin-bottom: 30px;
+}
+.pwd {
+  margin-bottom: 0px;
+}
 .login {
   padding: 30px 20px;
-  width: 400px;
-  height: 300px;
-  background-color: #bfedbe;
+  width: 500px;
+  height: 400px;
+  background-color: #b7e2dd;
   margin-left: 1000px;
-  margin-top: 250px;
-  margin-bottom: 250px;
+  margin-top: 200px;
+  margin-bottom: 170px;
 }
-.el-button {
+.loginbtn {
   background-color: #65a8a0;
+  width: 200px;
+  height: 40px;
+  font-size: 18px;
+}
+.pwdbtn {
+  background-color: #65a8a0;
+  margin-top: 2px;
+  height: 40px;
+  
+}
+.pwdForget {
+  text-align: right;
+  text-align: top;
+  height: 50px;
+  margin-bottom: 0px;
+}
+.validateCode {
+  width: 200px;
+  margin-right: 154px;
+}
+.vali-code {
+  margin-top: 20px;
+  padding-left: 0px;
+  margin-left: 0px;
+  
+}
+.getout {
+  background-color: #40aee9;
+  margin-left:1655px;
+  height: 40px;
 }
 </style>

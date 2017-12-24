@@ -20,14 +20,6 @@ export default new Router({
       component: resolve => require(['../components/StudentProfile.vue'], resolve)
     },
     {
-      path: '/student/edit',
-      component: resolve => require(['../components/StudentEdit.vue'], resolve)
-    },
-    {
-      path: '/student/push',
-      component: resolve => require(['../components/StudentPush.vue'], resolve)
-    },
-    {
       path: '/teacher/login',
       component: resolve => require(['../components/TeacherLogin.vue'], resolve)
     },
@@ -48,24 +40,8 @@ export default new Router({
       component: resolve => require(['../components/MasterProfile.vue'], resolve)
     },
     {
-      path: '/master/requests',
-      component: resolve => require(['../components/MasterRequests.vue'], resolve)
-    },
-    {
-      path: '/master/refuse',
-      component: resolve => require(['../components/MasterRefuse.vue'], resolve)
-    },
-    {
       path: '/master/class',
       component: resolve => require(['../components/MasterClass.vue'], resolve)
-    },
-    {
-      path: '/master/student',
-      component: resolve => require(['../components/MasterStudent.vue'], resolve)
-    },
-    {
-      path: '/master/modify',
-      component: resolve => require(['../components/MasterModify.vue'], resolve)
     },
     {
       path: '/master/organization',
@@ -80,8 +56,8 @@ export default new Router({
       component: resolve => require(['../components/MasterAddress.vue'], resolve)
     },
     {
-      path: '/master/push',
-      component: resolve => require(['../components/MasterPush.vue'], resolve)
+      path: '/master/requests',
+      component: resolve => require(['../components/MasterRequests.vue'], resolve)
     },
     {
       path: '/admin/login',

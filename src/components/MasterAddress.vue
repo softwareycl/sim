@@ -1,24 +1,30 @@
 <template>
   <div class="wrap">
     <div class="title" style="width:100%;height:100px;">通讯录</div>
-    <div class="content" style="position:absolute;width:99.2%;height:100%;">
-      <el-table :data="tableData" stripe border style="width: 1500px;position:relative;top:100px;left:150px;" height="700">
+    <div class="content" style="width:100%;height:100%;">
+      <div class="gap"></div>
+      <el-table class="table" :data="tableData" stripe border height="700">
         <el-table-column
-          prop="date"
-          label="日期"
-          width="180">
+          prop="studentName"
+          label="学生姓名"
+          width="250">
         </el-table-column>
         <el-table-column
-          prop="name"
-          label="姓名"
-          width="180">
+          prop="studentId"
+          label="学号"
+          width="300">
         </el-table-column>
         <el-table-column
-          prop="address"
-          label="地址">
+          prop="personalPhone"
+          label="手机号码"
+          width="350">
+        </el-table-column>
+        <el-table-column
+          prop="homePhone"
+          label="家庭电话">
         </el-table-column>
       </el-table>
-      <el-button style="position:relative;top:-680px;left:85%;background-color:#1f665d;color:white;" @click="toPrev()">返回上一页</el-button>
+      <el-button class="returnbtn" @click="toPrev()" type="primary">返回上一页</el-button>
     </div>
   </div>
 </template>
@@ -27,23 +33,7 @@
 export default {
   data () {
     return {
-      tableData: [{
-        date: '2016-05-02',
-        name: '王小虎',
-        address: '上海市普陀区金沙江路 1518 弄'
-      }, {
-        date: '2016-05-04',
-        name: '王小虎',
-        address: '上海市普陀区金沙江路 1517 弄'
-      }, {
-        date: '2016-05-01',
-        name: '王小虎',
-        address: '上海市普陀区金沙江路 1519 弄'
-      }, {
-        date: '2016-05-03',
-        name: '王小虎',
-        address: '上海市普陀区金沙江路 1516 弄'
-      }]
+      tableData: []
     }
   },
   methods: {
@@ -56,11 +46,24 @@ export default {
 
 <style scoped>
 .title {
-  background-color: #44bdae;
+  background-color: #90c8eb;
   text-align: center;
   line-height: 100px;
+  font-size: 45px;
 }
 .content {
-  background-color: #E9EEF3;
+  background-color: #bdd7e8;
+  text-align: center;
+}
+.table {
+  width: 70%;
+  margin: 0 auto;
+}
+.gap {
+  width: 100%;
+  height: 2em;
+}
+.returnbtn {
+  margin-top: 2em;
 }
 </style>
