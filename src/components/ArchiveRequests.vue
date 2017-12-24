@@ -1,30 +1,48 @@
 <template>
   <div class="wrap">
-    <el-container>
+    <el-container class="container">
       <el-header height="100px">
-        档案审核
+        档案修改审核
       </el-header>
       <el-main>
-        <div style="position:absolute;z-index=1;">
-          <el-table :data="tableData" stripe border style="position:relative;top:100px;left:300px;" height="500" @row-click="toClass">
+        <el-button class="getout" @click="goBack()">返回</el-button>
+        <div class="info" style="position:absolute;z-index=1">
+          <el-table
+          :data="tableData"
+          border
+          style="width: 100%"
+          max-height="450">
             <el-table-column
-              prop="name"
-              label="姓名"
-              width="200">
+            fixed
+            prop="name"
+            label="姓名"
+            width="150">
             </el-table-column>
             <el-table-column
-              prop="id"
-              label="学号"
-              width="200">
+            prop="id"
+            label="id"
+            width="200">
             </el-table-column>
             <el-table-column
-              prop="info"
-              label="个人信息">
+            prop="reason"
+            label="原因"
+            width="300">
+            </el-table-column>
+            <el-table-column
+            prop="status"
+            label="状态"
+            width="120">
+            </el-table-column>
+            <el-table-column
+            fixed="right"
+            label="操作"
+            width="100">
+              <template slot-scope="scope">
+                <el-button @click="accept(scope.row)" type="text" size="small">接受</el-button>
+                <el-button @click="refuse(scope.row)" type="text" size="small">拒绝</el-button>
+              </template>
             </el-table-column>
           </el-table>
-        </div>
-        <div style="position:absolute;z-index=2">
-          <el-button style="position:relative;left:1500px;top:-40px;background-color:#f7cbdb;">返回首页</el-button>
         </div>
       </el-main>
     </el-container>
@@ -36,39 +54,67 @@ export default {
   data () {
     return {
       tableData: [{
-        name: '我',
         id: 1,
-        info: '点此查看个人信息'
+        name: 'sb',
+        status: '待处理',
+        reason: 'xxx'
       }, {
-        name: '你',
         id: 2,
-        info: '点此查看个人信息'
+        name: 'sb1',
+        status: '待处理',
+        reason: 'xxx'
       }, {
-        name: '他',
         id: 3,
-        info: '点此查看个人信息'
-      }]
+        name: 'sb2',
+        status: '待处理',
+        reason: 'xxx'
+      }],
     }
+  },
+  methods: {
+    goBack () {
+      this.$router.push('/admin/profile')
+    },
+    accept (row) {
+      row.status = '已接受'
+    },
+    refuse (row) {
+      row.status = '已拒绝'
+    }
+
   }
 }
 </script>
 
 <style scoped>
+.container {
+  width: 100%;
+  height: 100%;
+}
 .el-header {
-  background-color: #e8488b;
+  background-color: #EB8610;
   text-align: center;
   line-height: 100px;
   font-size: 30px;
   color: #ffffff;
 }
+.info {
+  margin: 0 auto;
+}
 .el-main {
-  background-color: #ffe8f3;
-  text-align: center;
+  background-color: #EBD4B9;
   line-height: 160px;
-  height: 900px;
+  height: 100%;
 }
 .el-table {
-  width: 630px;
+  width: auto;
+  height: auto;
   font-size:20px;
 }
+.getout {
+    background-color: #65a8a0;
+    position: absolute;
+    right: 15%;
+    top: 20%;
+  }
 </style>

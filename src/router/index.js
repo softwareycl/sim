@@ -32,6 +32,10 @@ export default new Router({
       component: resolve => require(['../components/TeacherClass.vue'], resolve)
     },
     {
+      path: '/teacher/score',
+      component: resolve => require(['../components/TeacherScore.vue'], resolve)
+    },
+    {
       path: '/master/login',
       component: resolve => require(['../components/MasterLogin.vue'], resolve)
     },
@@ -70,6 +74,10 @@ export default new Router({
     {
       path: '/admin/refuse',
       component: resolve => require(['../components/AdminRefuse.vue'], resolve)
+    },
+    {
+      path: '/admin/unload',
+      component: resolve => require(['../components/AdminUnload.vue'], resolve)
     }
   ]
 })

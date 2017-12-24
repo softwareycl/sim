@@ -5,8 +5,8 @@
         班级信息
       </el-header>
       <el-main>
-        <div style="position:absolute;z-index=1;">
-          <el-table :data="tableData" stripe border style="position:relative;top:100px;left:300px;" height="500" @row-click="toClass">
+        <div style="position:absolute;z-index=1">
+          <el-table :data="tableData" stripe border style="position:relative;top:100px;left:300px;" height="500">
             <el-table-column
               prop="name"
               label="姓名"
@@ -24,12 +24,12 @@
           </el-table>
         </div>
         <div style="position:absolute;z-index=2">
-          <el-button style="position:relative;left:1500px;top:-40px;background-color:#f7cbdb;">返回首页</el-button>
+          <el-button style="position:relative;left:1500px;top:-40px;background-color:#f7cbdb;" @click="goBack">返回首页</el-button>
           <div class="title" style="position:relative;left:1200px;top:-100px;">班级：{{className}}</div>
           <div class="count" style="position:relative;left:1200px;top:-200px;">人数：{{amount}}</div>
           <div class="address" style="position:relative;left:1100px;top:-200px;">通讯录</div>
           <div class="organization" style="position:relative;left:1350px;top:-310px;">班级职务列表</div>
-          <div class="score" style="position:relative;left:1100px;top:-200px;">成绩记录</div>
+          <div class="score" style="position:relative;left:1100px;top:-200px;" @click="toScore">成绩记录</div>
           <div class="statistics" style="position:relative;left:1350px;top:-310px;">查看统计报表</div>
         </div>
       </el-main>
@@ -61,11 +61,17 @@ export default {
   methods: {
     getClassInfo (id) {
 
+    },
+    mounted () {
+      var id = location.href.split('?')[1]
+      this.getClassInfo(id)
+    },
+    toScore () {
+      this.$router.push('/teacher/score')
+    },
+    goBack () {
+      this.$router.push('/teacher/profile')
     }
-  },
-  mounted () {
-    var id = location.href.split('?')[1]
-    this.getClassInfo(id)
   }
 }
 </script>

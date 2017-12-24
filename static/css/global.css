@@ -2,3 +2,11 @@
     font-family: 'mb-icon';
     src: url('/home/brian/sim/static/fonts/mb-icon.wolf') format('wolf')
 }
+* {
+	margin: 0;
+	padding: 0;
+}
+html,body,#app,.wrap{
+    width:100%;
+    height:100%;
+}

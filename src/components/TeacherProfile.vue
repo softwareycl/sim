@@ -16,7 +16,7 @@
         </div>
         <div style="position:absolute;z-index=2">
           <el-button style="position:relative;left:0px;top:-40px;background-color:#f7cbdb;">注销</el-button>
-          <div class="tip" style="position:relative;left:1000px;top:50px;">点击班级名字进入班级页面哦！</div>
+          <div class="tip" style="position:relative;left:800px;top:50px;">点击班级名字进入班级页面哦！</div>
         </div>
       </el-main>
     </el-container>
@@ -49,6 +49,12 @@ export default {
 </script>
 
 <style scoped>
+.wrap {
+  position: absolute;
+  width: 100%;
+  height:100%;
+  background-color: #ffe8f3;
+}
 .tip {
   font-size: 30px;
   color: #e8488b;

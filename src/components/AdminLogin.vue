@@ -1,24 +1,23 @@
 <template>
   <div class="wrap">
-    <el-container>
-      <el-header height="100px">管理员登录</el-header>
+    <el-container class="container">
+      <el-header height="50px"><b>管理员登录</b></el-header>
       <el-main>
+        <el-button class="getout" @click="getOut()">返回</el-button>
         <div class="login">
-          <el-form :label-position="labelPosition" label-width="60px" v-model="form">
-            <el-form-item label="用户名">
+          <el-form :label-position="left" label-width="65px" v-model="form">
+            <el-form-item class="username" label="用户名">
               <el-input v-model="form.username"></el-input>
             </el-form-item>
-            <el-form-item label="密码">
+            <el-form-item class="pwd" label="密码">
               <el-input type="password" v-model="form.pwd"></el-input>
             </el-form-item>
-            <el-form-item>
-              <el-input v-model="form.validatecode" placeholder="请输入验证码" size="medium"></el-input>
-              <el-popover ref="a" placement="right-end" trigger="hover">
-								<img alt="验证码图片" width="200px">
-							</el-popover>
+            <el-form-item class="vali-code" style="margin-left:0;">
+              <el-input class="validateCode" sytle="display:inline;"v-model="form.validatecode" placeholder="请输入验证码"></el-input><img src='' alt="logo" title="点击换一张" style="display:inline;" @click="changeCode()">
             </el-form-item>
+
           </el-form>
-          <el-button @click="login()">登录</el-button>
+          <el-button class="loginbtn" @click="login()">登录</el-button>
         </div>
       </el-main>
     </el-container>
@@ -26,48 +25,81 @@
 </template>
 
 <script>
-export default {
-  data () {
-    return {
-      labelPosition: 'left',
-      form: {
-        username: '',
-        pwd: '',
-        validatecode: ''
+  export default {
+    data () {
+      return {
+        labelPosition: 'right',
+        form: {
+          username: '',
+          pwd: '',
+          validatecode: ''
+        }
+      }
+    },
+    methods: {
+      login () {
+        this.$router.push('/admin/profile')
+      },
+      changeCode () {
+        console.log('no')
+      },
+      getOut () {
+        this.$router.push('/')
       }
     }
-  },
-  methods: {
-    login () {
-      this.$router.push('/admin/profile')
-    }
   }
-}
 </script>
 
 <style scoped>
-.el-header {
-  background-color: #f0a44a;
-  color: #333;
-  text-align: center;
-  line-height: 60px;
-}
-.el-main {
-  background-color: #E9EEF3;
-  color: #333;
-  text-align: center;
-  line-height: 160px;
-}
-.login {
-  padding: 30px 20px;
-  width: 400px;
-  height: 300px;
-  background-color: #fcd4a4;
-  margin-left: 1000px;
-  margin-top: 250px;
-  margin-bottom: 250px;
-}
-.el-button {
-  background-color: #ffa53b;
-}
+  .container {
+    width: 100%;
+    height: 100%;
+  }
+  .el-header {
+    background-color: #F0A44A;
+    color: #333;
+    text-align:center;
+    line-height: 50px;
+  }
+  .el-main {
+    background-color: #FEF1E1;
+    color: #333;
+    line-height: 160px;
+    text-align:center;
+    height: 100%;
+  }
+  .username {
+    margin-bottom: 30px;
+  }
+  .pwd {
+    margin-bottom: 30px;
+  }
+  .login {
+    padding: 30px 20px;
+    width: 300px;
+    height: 300px;
+    background-color: #FFBB6C;
+    position: absolute;
+    right: 15%;
+    top: 25%;
+  }
+  .loginbtn {
+    background-color: #FF9800;
+    width: 200px;
+    height: 40px;
+    font-size: 18px;
+  }
+  .validateCode {
+    width: 200px;
+  }
+  .vali-code {
+    padding-left: 0px;
+    margin-left: 0px;
+  }
+  .getout {
+    background-color: #FF9800;
+    position: absolute;
+    right: 15%;
+    top: 15%;
+  }
 </style>
