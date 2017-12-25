@@ -1,18 +1,12 @@
 <template>
-   <div class="wrap4">
+   <div class="wrap">
      <el-container>
            <el-main>
-            
-            <div class="say" style="position:relative;left:50px;top:200px;">您的更改已提交，请等待审核.......</div>
+            <div class="say">您的更改已提交，请等待审核.......</div>
             <br>
-            <el-button class="ok" style="position:relative;left:40px" @click="Ok()">确定</el-button>
-           
+            <el-button class="ok" @click="Ok()">确定</el-button>
            </el-main>
-
      </el-container>
-
-
-
    </div>
 </template>
 
@@ -30,26 +24,23 @@ export default {
 </script>
 
 <style scoped>
-
+.wrap {
+  background-color: #dbecea;
+}
 .el-main {
-  background-color: #fefefe;
   color: #333;
   text-align: center;
   line-height: 160px;
 }
-
 .say {
   font-size: 60px;
   font-weight:bold;
+  margin-top: 10%;
 }
-
 .ok {
-
   background-color: #8fcbc4;
   width: 100px;
   height: 80px;
   font-size: 30px;
-  
 }
-
 </style>

@@ -1,20 +1,18 @@
 <template>
-  <div class="wrap3">
+  <div class="wrap">
     <el-container>
-      <el-header height="50px"><b>修改档案</b> <el-button class="getout" @click="getOut()">返回</el-button></el-header>
+      <el-header height="100px">修改档案</el-header>
       <el-main>
+        <el-button type="primary" class="getout" @click="getOut()">返回</el-button>
         <div class="editpain">
          <el-form :label-position="labelPosition" label-width="100px" v-model="form">
-
            <el-form-item class="birth" label="生日">
               <el-date-picker v-model="form.birthday" type="date" placeholder="选择日期" :picker-options="pickerOptions0">
               </el-date-picker>
             </el-form-item>
-
             <el-form-item class="address" label="地址">
               <el-input v-model="form.address" ></el-input>
             </el-form-item>
-
             <el-form-item class="introduce" label="自我介绍">
               <el-input  v-model="form.introduce" ></el-input>
             </el-form-item>
@@ -24,9 +22,8 @@
             <el-form-item class="telephone" label="家庭电话">
               <el-input  v-model="form.telephone" ></el-input>
             </el-form-item>
-
           </el-form>
-          <el-button class="pushbutton" @click="push()">提交</el-button>
+          <el-button type="primary" class="pushbutton" @click="push()">提交</el-button>
         </div>
       </el-main>
     </el-container>
@@ -96,7 +93,8 @@ export default {
   background-color: #65a8a0;
   color: #333;
   text-align:center;
-  line-height: 50px;
+  font-size: 30px;
+  line-height: 100px;
 }
 .el-main {
   background-color: #dbecea;
@@ -104,26 +102,28 @@ export default {
   text-align: center;
   line-height: 160px;
 }
-
 .editpain {
-  padding: 30px 20px;
+  padding: 50px 20px;
   width: 500px;
   height: 400px;
-  background-color: #dbecea;
-  margin-left: 550px;
-  margin-top: 200px;
+  background-color: #b7e2dd;
+  margin-left: 35%;
   margin-bottom: 170px;
+  padding-bottom: 60px;
+}
+.el-form-item {
+  margin-bottom: 30px;
 }
 .pushbutton {
-  background-color: #eff4f3;
   width: 100px;
   height: 50px;
   font-size: 20px;
 }
-
 .getout {
-  background-color: #65a8a0;
-  margin-left:1655px;
+  margin-left:70%;
   height: 40px;
+}
+.wrap {
+  background-color: #dbecea;
 }
 </style>

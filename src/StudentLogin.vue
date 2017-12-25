@@ -1,23 +1,23 @@
 <template>
   <div class="wrap">
-    <el-container class="container">
+    <el-container>
       <el-header height="100px"><b>学生登录</b></el-header>
       <el-main>
-        <el-button class="getout" @click="getOut()">返回</el-button>
-        <div class="login">
-          <el-form :label-position="left" label-width="65px" v-model="form">
+        <div class="loginForm">
+          <el-form :label-position="labelPosition" label-width="80px" v-model="form">
             <el-form-item class="username" label="用户名">
-              <el-input v-model="form.username"></el-input>
+              <el-input v-model="form.username" style="margin-left:5px;width:300px;height:51px;"></el-input>
             </el-form-item>
             <el-form-item class="pwd" label="密码">
-              <el-input type="password" v-model="form.pwd"></el-input>
+              <el-input type="password" v-model="form.pwd" style="margin-left:5px;width:300px;"></el-input>
             </el-form-item>
-            <el-form-item class="vali-code" style="margin-left:0;">
-              <el-input class="validateCode" sytle="display:inline;" v-model="form.validatecode" placeholder="请输入验证码"></el-input>
-              <img class="codeimg" :src="codeURL" alt="logo" title="点击换一张" style="display:inline;width:100px;height:40px;" @click="changeCode()">
+            <el-form-item class="vali-code" >
+              <el-input class="validateCode" v-model="form.validatecode" placeholder="请输入验证码" size="large"></el-input>
+              <img :src="codeURL" alt="logo" title="点击换一张" @click="changeCode()">
             </el-form-item>
           </el-form>
           <el-button class="loginbtn" @click="login()">登录</el-button>
+          <el-button class="getout" @click="getOut()">返回</el-button>
         </div>
       </el-main>
     </el-container>
@@ -81,14 +81,16 @@ export default {
             message: '该账户不存在，你是谁？'
           })
         }
+        console.log(response)
       }).catch((error) => {
-        console.log('【Error】:', error)
         this.$message({
-          title: '网络请求错误',
-          message: '请检查网络并重试',
-          type: 'error'
+          type: 'info',
+          message: '连接失败/' + error
         })
       })
+    },
+    pwdForget () {
+      console.log('yes')
     },
     changeCode () {
       this.codeURL = 'http://localhost:8080/verifyCode?num=' + Math.random()
@@ -102,61 +104,51 @@ export default {
 </script>
 
 <style scoped>
-  img {
-    vertical-align: top;
-  }
-  .container {
-    width: 100%;
-    height: 100%;
-  }
-  .el-header {
-    background-color: #65a8a0;
-    color: #333;
-    text-align:center;
-    line-height: 100px;
-    font-size: 30px;
-  }
-  .el-main {
-    background-color: #dbecea;
-    color: #333;
-    line-height: 160px;
-    text-align:center;
-    height: 100%;
-  }
-  .username {
-    margin-bottom: 30px;
-  }
-  .pwd {
-    margin-bottom: 30px;
-  }
-  .login {
-    padding: 30px 20px;
-    width: 400px;
-    height: 350px;
-    background-color: #b7e2dd;
-    position: absolute;
-    right: 25%;
-    top: 25%;
-  }
-  .loginbtn {
-    background-color: #65a8a0;
-    width: 200px;
-    height: 40px;
-    font-size: 18px;
-  }
-  .validateCode {
-    width: 60%;
-    vertical-align: top;
-  }
-  .vali-code {
-    padding-left: 0px;
-    margin-left: 0px;
-    text-align: left;
-  }
-  .getout {
-    background-color: #40aee9;
-    position: absolute;
-    right: 15%;
-    top: 15%;
-  }
+.username {
+  margin-bottom: 30px;
+}
+.pwd {
+  margin-bottom: 30px;
+}
+.loginForm {
+  padding: 60px 20px;
+  width: 500px;
+  height: 400px;
+  background-color: #b7e2dd;
+  margin-top: 5%;
+  margin-left: 50%;
+}
+.loginbtn {
+  background-color: #65a8a0;
+  width: 100px;
+  height: 40px;
+  font-size: 18px;
+}
+.validateCode {
+  width: 200px;
+  margin-left: 5px;
+}
+.el-form-item__content {
+  margin-left: 0;
+}
+.getout {
+  background-color: #40aee9;
+  margin-left: 80%;
+  height: 40px;
+}
+.el-main {
+  color: #333;
+  text-align: center;
+  line-height: 160px;
+}
+.el-header {
+  background-color: #65a8a0;
+  color: #333;
+  text-align:center;
+  line-height: 100px;
+  font-size: 30px;
+}
+.wrap {
+  background: #dbecea;
+}
 </style>

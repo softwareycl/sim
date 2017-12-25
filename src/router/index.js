@@ -40,6 +40,22 @@ export default new Router({
       component: resolve => require(['../components/TeacherClass.vue'], resolve)
     },
     {
+      path: '/teacher/score',
+      component: resolve => require(['../components/TeacherScore.vue'], resolve)
+    },
+    {
+      path: '/teacher/address',
+      component: resolve => require(['../components/TeacherAddress.vue'], resolve)
+    },
+    {
+      path: '/teacher/organization',
+      component: resolve => require(['../components/TeacherOrganization.vue'], resolve)
+    },
+    {
+      path: '/teacher/student',
+      component: resolve => require(['../components/TeacherStudent.vue'], resolve)
+    },
+    {
       path: '/master/login',
       component: resolve => require(['../components/MasterLogin.vue'], resolve)
     },
