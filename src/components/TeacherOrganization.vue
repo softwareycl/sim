@@ -14,7 +14,7 @@
           width="200">
         </el-table-column>
         <el-table-column
-          prop="studentTitle"
+          prop="titleName"
           label="职务">
         </el-table-column>
       </el-table>
