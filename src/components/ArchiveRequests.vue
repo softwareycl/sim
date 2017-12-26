@@ -64,18 +64,7 @@ export default {
     }
   },
   mounted () {
-    this.$axios.get(this.hostURL + '/requests', {
-
-    }).then((response) => {
-      this.tableData = []
-      console.log(response.data)
-      this.tableData = response.data
-    }).catch((error) => {
-      this.$message({
-        type: 'info',
-        message: '连接失败/' + error
-      })
-    })
+    this.getRequests()
   },
   methods: {
     goBack () {
@@ -96,6 +85,7 @@ export default {
             message: '成功确认'
           })
         }
+        this.getRequests()
       }).catch((error) => {
         console.log('【Error】:', error)
         this.$message({
@@ -108,8 +98,20 @@ export default {
     refuse (index, row) {
       row.status = '已拒绝'
       this.$router.push('/admin/refuse?' + this.tableData[index].id)
+    },
+    getRequests () {
+      this.$axios.get(this.hostURL + '/requests', {
+      }).then((response) => {
+        this.tableData = []
+        console.log(response.data)
+        this.tableData = response.data
+      }).catch((error) => {
+        this.$message({
+          type: 'info',
+          message: '连接失败/' + error
+        })
+      })
     }
-
   }
 }
 </script>

@@ -83,7 +83,7 @@ export default {
       this.$router.push('/teacher/organization?' + this.classId)
     },
     toStatistics () {
-      this.$router.push('/teacher/statistics?' + this.classId)
+      this.$router.push('/teacher/report?' + this.classId)
     },
     goBack () {
       this.$router.push('/teacher/profile')

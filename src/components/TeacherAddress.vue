@@ -15,12 +15,12 @@
           width="300">
         </el-table-column>
         <el-table-column
-          prop="personalPhone"
+          prop="personalPhoneNumber"
           label="手机号码"
           width="350">
         </el-table-column>
         <el-table-column
-          prop="homePhone"
+          prop="homeNumber"
           label="家庭电话">
         </el-table-column>
       </el-table>

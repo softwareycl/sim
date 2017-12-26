@@ -7,7 +7,7 @@
       <el-badge :value="Num0fRequest" :max="99" class="item">
         <el-button class="itembtn" size="large" @click="toRequests()">学生申请消息</el-button>
       </el-badge>
-      <el-button class="my" size="large" disabled>{{state}}</el-button>
+      <el-button class="my" size="large" :disabled="whether" @click="showReason()">我的申请{{state}}</el-button>
       <el-main>
         <div style="position:absolute;z-index=1;height:500px;">
           <div class="myclass" style="position:relative;top:100px;left:380px;" @click="myClass()">我的班级</div>
@@ -30,6 +30,11 @@ export default {
       state: ''
     }
   },
+  computed: {
+    whether () {
+      return this.state !== '已拒绝'
+    }
+  },
   methods: {
     myClass () {
       console.log('3')
@@ -48,19 +53,40 @@ export default {
     },
     getOut () {
       this.$router.push('/')
+    },
+    showReason () {
+      this.$message({
+        type: 'info',
+        message: this.reason
+      })
+    },
+    getStudentRequestsNumber () {
+      this.$axios.get(this.hostURL + '/numofrequests', {
+      }).then((response) => {
+        this.Num0fRequest = response.number
+      }).catch((error) => {
+        this.$message({
+          type: 'info',
+          message: '连接失败/' + error
+        })
+      })
+    },
+    getRequestState () {
+      this.$axios.get(this.hostURL + '/request/state', {
+      }).then((response) => {
+        this.state = response.data.state
+        this.reason = response.data.reason
+      }).catch((error) => {
+        this.$message({
+          type: 'info',
+          message: '连接失败/' + error
+        })
+      })
     }
   },
   mounted () {
-    this.$axios.get(this.hostURL + '/request/state', {
-
-    }).then((response) => {
-      this.state = response.data
-    }).catch((error) => {
-      this.$message({
-        type: 'info',
-        message: '连接失败/' + error
-      })
-    })
+    this.getRequestState()
+    this.getStudentRequestsNumber()
   }
 }
 </script>
@@ -134,6 +160,7 @@ img {
   margin-left: 76%;
   margin-right: 18%;
   height: 40px;
+  color: grays;
 }
 b{
   line-height: 50px;

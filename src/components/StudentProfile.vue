@@ -39,7 +39,7 @@ export default {
       Birthday: '1993/5/10',
       Addres: '内蒙古大草原',
       Introduce: '美貌与实力并重，邪恶与恐惧的化身。四千年美男子',
-      Photo: 'http://localhost:8080/images/time.jpg',
+      Photo: '',
       hostURL: 'http://localhost:8080/student',
       whether: true
     }
@@ -56,10 +56,10 @@ export default {
         this.Class = object.className
         this.Phone = object.personalPhone
         this.Telephone = object.homePhone
-        this.Birthday = object.studentBirth
+        this.Birthday = object.birthday
         this.Addres = object.studentCity
         this.Introduce = object.studentProfile
-        this.Photo = 'http://localhost:8080/images/time.jpg'
+        this.Photo = object.studentPhoto
         // object.studentPhoto
       }).catch((error) => {
         this.$message({
@@ -72,12 +72,13 @@ export default {
       this.$axios.get(this.hostURL + '/request', {
 
       }).then((response) => {
-        if (response.data === '已确认') {
+        console.log(response.data.state)
+        if (response.data.state === '已确认') {
           this.$message({
             type: 'info',
             message: '信息修改申请已通过'
           })
-        } else if (response.data === '待审核') {
+        } else if (response.data.state === '待处理') {
           this.$message({
             type: 'info',
             message: '信息修改申请待审核'
@@ -129,7 +130,7 @@ export default {
   width: 300px;
   float: left;
   margin-left: 400px;
-  margin-top: 300px;
+  margin-top: 100px;
 }
 .right {
   width: 500px;
