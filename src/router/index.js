@@ -114,6 +114,14 @@ export default new Router({
     {
       path: '/admin/refuse',
       component: resolve => require(['../components/AdminRefuse.vue'], resolve)
+    },
+    {
+      path: '/admin/upload/student',
+      component: resolve => require(['../components/AdminUploadStudent.vue'], resolve)
+    },
+    {
+      path: '/admin/upload/user',
+      component: resolve => require(['../components/AdminUploadUser.vue'], resolve)
     }
   ]
 })

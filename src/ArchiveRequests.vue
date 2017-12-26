@@ -5,7 +5,7 @@
         档案修改审核
       </el-header>
       <el-main>
-        <el-button class="getout" @click="goBack()">返回上一页</el-button>
+        <el-button class="getout" @click="goBack()">返回上一级</el-button>
         <div class="info" style="position:absolute;z-index=1">
           <el-table
           :data="tableData"
@@ -14,13 +14,13 @@
           max-height="450">
             <el-table-column
             fixed
-            prop="masterName"
+            prop="name"
             label="姓名"
             width="150">
             </el-table-column>
             <el-table-column
-            prop="masterId"
-            label="教职工编号"
+            prop="id"
+            label="id"
             width="200">
             </el-table-column>
             <el-table-column
@@ -29,7 +29,7 @@
             width="300">
             </el-table-column>
             <el-table-column
-            prop="state"
+            prop="status"
             label="状态"
             width="120">
             </el-table-column>
@@ -38,8 +38,8 @@
             label="操作"
             width="100">
               <template slot-scope="scope">
-                <el-button @click="accept(scope.$index, scope.row)" type="text" size="small">接受</el-button>
-                <el-button @click="refuse(scope.$index, scope.row)" type="text" size="small">拒绝</el-button>
+                <el-button @click="accept(scope.row)" type="text" size="small">接受</el-button>
+                <el-button @click="refuse(scope.row)" type="text" size="small">拒绝</el-button>
               </template>
             </el-table-column>
           </el-table>
@@ -54,21 +54,28 @@ export default {
   data () {
     return {
       tableData: [{
-        id: 0,
-        masterName: '',
-        masterId: '',
-        reason: '',
-        state: ''
-      }],
-      hostURL: 'http://localhost:8080/admin'
+        id: 1,
+        name: 'sb',
+        status: '待处理',
+        reason: 'xxx'
+      }, {
+        id: 2,
+        name: 'sb1',
+        status: '待处理',
+        reason: 'xxx'
+      }, {
+        id: 3,
+        name: 'sb2',
+        status: '待处理',
+        reason: 'xxx'
+      }]
     }
   },
   mounted () {
-    this.$axios.get(this.hostURL + '/requests', {
+    this.$axios.get(this.hostURL + '', {
 
     }).then((response) => {
       this.tableData = []
-      console.log(response.data)
       this.tableData = response.data
     }).catch((error) => {
       this.$message({
@@ -81,22 +88,19 @@ export default {
     goBack () {
       this.$router.push('/admin/profile')
     },
-    accept (index, row) {
-      row.state = '已确认'
-      console.log(this.tableData)
-      console.log(index)
-      this.$axios.get(this.hostURL + '/admit', {
-        params: {
-          requestId: this.tableData[index].id
+    accept (row) {
+      row.status = '已接受'
+      this.$axios({
+        url: '',
+        method: 'post',
+        baseURL: this.hostUrl,
+        data: {
+          status: row.status
         }
-      }).then((response) => {
-        if (response.data === true) {
-          this.$message({
-            type: 'info',
-            message: '成功确认'
-          })
-        }
-      }).catch((error) => {
+      })
+      .then((response) => {
+      })
+      .catch((error) => {
         console.log('【Error】:', error)
         this.$message({
           title: '网络请求错误',
@@ -105,9 +109,9 @@ export default {
         })
       })
     },
-    refuse (index, row) {
+    refuse (row) {
       row.status = '已拒绝'
-      this.$router.push('/admin/refuse?' + this.tableData[index].id)
+      this.$router.push('/admin/refuse')
     }
 
   }
@@ -120,7 +124,7 @@ export default {
   height: 100%;
 }
 .el-header {
-  background-color: #f0a44a;
+  background-color: #EB8610;
   text-align: center;
   line-height: 100px;
   font-size: 30px;
@@ -131,7 +135,7 @@ export default {
   top: 30%;
 }
 .el-main {
-  background-color: #f8e6db;
+  background-color: #EBD4B9;
   line-height: 160px;
   height: 100%;
 }
@@ -141,7 +145,7 @@ export default {
   font-size:20px;
 }
 .getout {
-    background-color: #ffa53b;
+    background-color: #65a8a0;
     position: absolute;
     right: 15%;
     top: 20%;

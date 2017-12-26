@@ -1,15 +1,15 @@
 <template>
   <div class="wrap">
-    <el-container>
+    <el-container class="container">
       <el-header height="100px">
         尊贵的王，欢迎登录
       </el-header>
       <el-main>
-        <div style="position:absolute;z-index=1">
-          <div class="archive" style="position:relative;left:840px;">导入学生档案</div>
-          <div class="userInfo" style="position:relative;left:650px;">导入用户信息</div>
-          <div class="check" style="position:relative;left:1080px;top:-130px;" @click="toArchiveRequests()">档案审核</div>
-          <el-button style="position:relative;left:1500px;top:-430px;background-color:#f0a44a;" @click="exit()">注销</el-button>
+        <div class="wrap1" style="position:absolute;z-index=1">
+          <el-button style="position:absolute;right:5%;background-color:#f0a44a;" @click="exit()">注销</el-button>
+          <div class="archive" style="position:relative;left:45%;top:10%;" @click="toUploadStudent">导入学生档案</div>
+          <div class="userInfo" style="position:relative;left:30%;top:20%;" @click="toUploadUser">导入用户信息</div>
+          <div class="check" style="position:relative;left:60%;top:5%;" @click="toArchiveRequests">档案审核</div>
         </div>
       </el-main>
     </el-container>
@@ -28,13 +28,33 @@ export default {
       this.$router.push('/')
     },
     toArchiveRequests () {
-      this.$router.push('/admin/requests')
+      this.$router.push('/admin/request')
+    },
+    toUploadStudent () {
+      this.$router.push('/admin/upload/student')
+    },
+    toUploadUser () {
+      this.$router.push('/admin/upload/user')
     }
   }
 }
 </script>
 
 <style scoped>
+.container {
+  width: 100%;
+  height: 100%;
+}
+.el-main {
+  background-color: #f8e6db;
+  text-align: center;
+  line-height: 160px;
+  height: 100%;
+}
+.wrap1 {
+  width: 100%;
+  height: 100%;
+}
 .archive {
   width: 140px;      
   height: 140px;      
@@ -77,11 +97,5 @@ export default {
   line-height: 100px;
   font-size: 30px;
   color: #ffffff;
-}
-.el-main {
-  background-color: #ffffff;
-  text-align: center;
-  line-height: 160px;
-  height: 900px;
 }
 </style>

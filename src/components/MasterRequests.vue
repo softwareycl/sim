@@ -72,7 +72,7 @@ export default {
       console.log(row.id)
       this.$axios.get(this.hostURL + '/accept', {
         params: {
-          requestId: row.id
+          requestId: this.tableData[index].id
         }
       }).then((response) => {
         console.log(response.data)
@@ -89,7 +89,7 @@ export default {
     },
     refuse (index, row) {
       console.log(row.id)
-      this.$router.push('/master/refuse?' + row.id)
+      this.$router.push('/master/refuse?' + this.tableData[index].id)
     },
     toProfile () {
       this.$router.push('/master/profile')
